@@ -30,6 +30,10 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   return answer
 
+def add_keyword(value):
+  if value:
+    st.session_state.keyword_list.append(value)
+    st.success(f"Keyword '{value}' added!")
 
 # Create a session state to store the keyword list
 if 'keyword_list' not in st.session_state:
@@ -45,11 +49,6 @@ for keyword in st.session_state.keyword_list:
 # Delete the last keyword when the button is clicked
 if st.button("Delete Last Keyword") and st.session_state.keyword_list:
     deleted_keyword = st.session_state.keyword_list.pop()
-
-def add_keyword(value):
-  if value:
-    st.session_state.keyword_list.append(value)
-    st.success(f"Keyword '{value}' added!")
 
 # df = enhanced_arxive_searcher(keywords)
 # st.write(df)
