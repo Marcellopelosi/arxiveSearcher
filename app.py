@@ -33,26 +33,27 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   return answer
 
+st.title("Arxive search engine")
+st.write("Search engine for Arxiv. Changes results and search order from traditional search. Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords.") 
+         
+Translated with DeepL.com (free version))
 # Create a session state to store the keyword list
 if 'keyword_list' not in st.session_state:
     st.session_state.keyword_list = []
 
-# Input for adding new keywords
 new_keyword = st.text_input("Add your keywords (comma separated list):")
 
-# Add keyword to the list when the button is clicked
 if st.button("Add Keywords") and new_keyword:
     st.session_state.keyword_list = [k.strip() for k in new_keyword.split(",")]
 
-# Delete the last keyword when the button is clicked
 if st.button("Delete keywords") and st.session_state.keyword_list:
     st.session_state.keyword_list = []
 
-# Display the current list of keywords
-st.subheader("Current Keywords:")
+st.write("Current Keywords:")
 for keyword in st.session_state.keyword_list:
     st.write(f"- {keyword}")
 
 if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
   st.write(df)
+  st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
