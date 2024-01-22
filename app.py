@@ -55,5 +55,8 @@ for keyword in st.session_state.keyword_list:
 
 if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
-  st.dataframe(df, use_container_width = False)
-
+  # Display the dataframe with fully extended columns
+  st.dataframe(df.style.set_table_styles([{
+      'selector': 'td',
+      'props': [('max-width', '100px')]
+  }]))
