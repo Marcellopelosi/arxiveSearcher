@@ -5,6 +5,8 @@ import numpy as np
 from itertools import combinations
 import streamlit as st
 from streamlit_tags import st_tags
+import ast
+
 
 def arxive_searcher(keywords_list):
   """Return a df retrieving results from arxive.org, according to ALL the words in the keywards list. First 20 results"""
@@ -32,7 +34,7 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
   return answer
 
 keywords = st_tags("Enter Keyword:", "Press enter to add more")
-keywords = [n.strip() for n in keywords]
+keywords = ast.literal_eval(keywords)
 st.write("Selected Keywords:")
 st.write(keywords)
 df = enhanced_arxive_searcher(keywords)
