@@ -56,7 +56,7 @@ for keyword in st.session_state.keyword_list:
 if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
   df['title'] = df["title"].apply(lambda title: make_clickable(title))
-  st.write(df.style)
+  st.dataframe(df.style)
 
 
 
