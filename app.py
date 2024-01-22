@@ -39,6 +39,10 @@ new_keyword = st.text_input("Add a new keyword:")
 if st.button("Add Keyword") and new_keyword:
     st.session_state.keyword_list.append(new_keyword)
 
+if st.button("Delete Last Keyword") and st.session_state.keyword_list:
+    deleted_keyword = st.session_state.keyword_list.pop()
+
+
 # Display the current list of keywords
 st.subheader("Current Keywords:")
 for keyword in st.session_state.keyword_list:
