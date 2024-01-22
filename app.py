@@ -55,8 +55,16 @@ for keyword in st.session_state.keyword_list:
 
 if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
-  df['title'] = df["title"].apply(lambda title: make_clickable(title))
-  st.dataframe(df.style)
+  df['title'] = df["title"].apply(lambda title: "https://www.google.it/search?q={}".format(title))
+  st.data_editor(
+      df,
+      column_config={
+          "text": st.column_config.LinkColumn(
+              "text", display_text="https://www.google.it/search?q=(.*?)"
+          ),
+      },
+      hide_index=True,
+  )
 
 
 
