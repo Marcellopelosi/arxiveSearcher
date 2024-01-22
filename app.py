@@ -8,7 +8,7 @@ import streamlit as st
 def arxive_searcher(keywords_list):
   """Return a df retrieving results from arxive.org, according to ALL the words in the keywards list. First 20 results"""
 
-  elaborated_keywords = "+AND+".join(["all:"+ k.replace(" ","") for k in keywords_list])
+  elaborated_keywords = "+AND+".join(["all:"+ k.replace(" ","%20") for k in keywords_list])
   url = "http://export.arxiv.org/api/query?search_query=" + elaborated_keywords + "&max_results=20"
   data = urllib.request.urlopen(url)
   try:
@@ -38,7 +38,7 @@ if 'keyword_list' not in st.session_state:
     st.session_state.keyword_list = []
 
 # Input for adding new keywords
-new_keyword = st.text_input("Add a new keyword:")
+new_keyword = st.text_input("Add your keywords (comma separated list):")
 
 # Add keyword to the list when the button is clicked
 if st.button("Add Keywords") and new_keyword:
