@@ -8,7 +8,7 @@ import streamlit as st
 def arxive_searcher(keywords_list):
   """Return a df retrieving results from arxive.org, according to ALL the words in the keywards list. First 20 results"""
 
-  elaborated_keywords = "+AND+".join(["all:"+ k.strip().replace("","%20") for k in keywords_list])
+  elaborated_keywords = "+AND+".join(["all:"+ k.replace(" ","") for k in keywords_list])
   url = "http://export.arxiv.org/api/query?search_query=" + elaborated_keywords + "&max_results=20"
   data = urllib.request.urlopen(url)
   try:
