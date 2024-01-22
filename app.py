@@ -46,9 +46,9 @@ st.set_page_config(
 )
 
 # Sidebar
-st.sidebar.title("Arxiv Search Engine")
+st.sidebar.title("Arxiv Search Tool")
 st.sidebar.write(
-    "Search engine for Arxiv. Changes results and search order from traditional search. "
+    "Search tool for Arxiv. Changes results and search order from traditional search. "
     "Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords."
 )
 
