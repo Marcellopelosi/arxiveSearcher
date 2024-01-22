@@ -50,7 +50,7 @@ st.subheader("Current Keywords:")
 for keyword in st.session_state.keyword_list:
     st.write(f"- {keyword}")
 
-if st.button("Delete Last Keyword") and st.session_state.keyword_list:
+if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
   st.write(df)
 
