@@ -18,9 +18,6 @@ def arxive_searcher(keywords_list):
     df = pd.DataFrame(columns = ["title","summary", "doi", "published"] )
   return df
 
-def make_clickable(title):
-    return '<a href="https://www.google.it/search?q={}" rel="noopener noreferrer" target="_blank">{}</a>'.format("+".join(title.split()),title)
-
 def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   answers = []
@@ -36,7 +33,6 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 st.title("Arxive search engine")
 st.write("Search engine for Arxiv. Changes results and search order from traditional search. Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords.") 
          
-Translated with DeepL.com (free version))
 # Create a session state to store the keyword list
 if 'keyword_list' not in st.session_state:
     st.session_state.keyword_list = []
