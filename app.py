@@ -49,7 +49,7 @@ st.set_page_config(
 st.sidebar.title("Arxiv Search Tool")
 st.sidebar.write(
     "Search tool for Arxiv. Changes results and search order from traditional search. "
-    "Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords."
+    "Starting from a list of keywords provided as input. Ideal for searches with 5 to 10 keywords."
 )
 
 # Create a session state to store the keyword list
