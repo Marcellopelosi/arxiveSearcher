@@ -5,10 +5,12 @@ import numpy as np
 from itertools import combinations
 import streamlit as st
 
-problems = ["You are using just one keyword", "Non compatible keywords in the same list"]
+problems = ["Empty dataframe", "Empty dataframe", "Empty dataframe"]
+reasons = ["You are using just one keyword", "Non compatible keywords in the same list"]
 solutions = ["Enlarge your keywords list!", "Delete unnecessary keywords"]
 possible_issues = pd.DataFrame()
-possible_issues["problem"] = problems
+possible_issues.index = problems
+possible_issues["possible reason"] = reasons
 possible_issues["proposed solution"] = solutions
 
 def arxive_searcher(keywords_list):
@@ -79,5 +81,5 @@ if st.button("Search on Arxiv") and st.session_state.keyword_list:
     st.write("### Results:")
     st.dataframe(df)
     st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
-    st.subheader("Current Keywords:")
+    st.subheader("Possible Issues:")
     st.dataframe(possible_issues)
