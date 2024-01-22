@@ -54,14 +54,6 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 #   st.write(df)
 #   st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
 
-import streamlit as st
-
-# Function to perform Arxiv search
-def enhanced_arxive_searcher(keywords):
-    # Add your Arxiv search logic here
-    # This function should return the DataFrame with search results
-    pass
-
 # Set page title and description
 st.set_page_config(
     page_title="Arxiv Search Engine",
