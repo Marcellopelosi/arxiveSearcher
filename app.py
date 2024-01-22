@@ -41,12 +41,12 @@ if 'keyword_list' not in st.session_state:
 new_keyword = st.text_input("Add a new keyword:")
 
 # Add keyword to the list when the button is clicked
-if st.button("Add Keyword") and new_keyword:
-    st.session_state.keyword_list.append(new_keyword)
+if st.button("Add Keywords") and new_keyword:
+    st.session_state.keyword_list = [k.strip() for k in new_keyword.split(",")]
 
 # Delete the last keyword when the button is clicked
-if st.button("Delete Last Keyword") and st.session_state.keyword_list:
-    deleted_keyword = st.session_state.keyword_list.pop()
+if st.button("Delete keywords") and st.session_state.keyword_list:
+    st.session_state.keyword_list = []
 
 # Display the current list of keywords
 st.subheader("Current Keywords:")
