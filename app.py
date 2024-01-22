@@ -55,5 +55,5 @@ for keyword in st.session_state.keyword_list:
 
 if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
-  st.write(df)
+  st.dataframe(df, use_container_width = False)
 
