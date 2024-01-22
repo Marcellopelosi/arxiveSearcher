@@ -30,13 +30,22 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   return answer
 
-keywords = []
-keywords.append(st.text_input("Add a keyword"))
-st.write("Selected Keywords:")
-st.write(keywords)
+if 'keyword_list' not in st.session_state:
+      st.session_state.keyword_list = []
 
-df = enhanced_arxive_searcher(keywords)
-st.write(df)
+new_keyword = st.text_input("Add a new keyword:")
+
+# Add keyword to the list when the button is clicked
+if st.button("Add Keyword") and new_keyword:
+    st.session_state.keyword_list.append(new_keyword)
+
+# Display the current list of keywords
+st.subheader("Current Keywords:")
+for keyword in st.session_state.keyword_list:
+    st.write(f"- {keyword}")
+
+# df = enhanced_arxive_searcher(keywords)
+# st.write(df)
 
 
 
