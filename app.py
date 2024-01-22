@@ -30,25 +30,25 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   return answer
 
-def add_keyword(value):
-  if value:
-    st.session_state.keyword_list.append(value)
-    st.success(f"Keyword '{value}' added!")
-
 # Create a session state to store the keyword list
 if 'keyword_list' not in st.session_state:
     st.session_state.keyword_list = []
 
-# Input for adding new keywords with on_change callback
-new_keyword = st.text_input("Add a new keyword:", on_change=add_keyword)
+# Input for adding new keywords
+new_keyword = st.text_input("Add a new keyword:")
 
-st.subheader("Current Keywords:")
-for keyword in st.session_state.keyword_list:
-    st.write(f"- {keyword}")
+# Add keyword to the list when the button is clicked
+if st.button("Add Keyword") and new_keyword:
+    st.session_state.keyword_list.append(new_keyword)
 
 # Delete the last keyword when the button is clicked
 if st.button("Delete Last Keyword") and st.session_state.keyword_list:
     deleted_keyword = st.session_state.keyword_list.pop()
+
+# Display the current list of keywords
+st.subheader("Current Keywords:")
+for keyword in st.session_state.keyword_list:
+    st.write(f"- {keyword}")
 
 # df = enhanced_arxive_searcher(keywords)
 # st.write(df)
