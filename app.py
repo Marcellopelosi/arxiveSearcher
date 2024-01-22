@@ -21,9 +21,6 @@ def arxive_searcher(keywords_list):
 def make_clickable(title):
     return '<a href="https://www.google.it/search?q={}" rel="noopener noreferrer" target="_blank">{}</a>'.format("+".join(title.split()),title)
 
-df['title'] = df["title"].apply(lambda title: make_clickable(title))
-df.style
-
 def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   answers = []
@@ -58,7 +55,8 @@ for keyword in st.session_state.keyword_list:
 
 if st.button("Search on Arxive") and st.session_state.keyword_list:
   df = enhanced_arxive_searcher(st.session_state.keyword_list)
-  st.write(df)
+  df['title'] = df["title"].apply(lambda title: make_clickable(title))
+  st.write(df.style)
 
 
 
