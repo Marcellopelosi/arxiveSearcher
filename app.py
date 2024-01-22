@@ -18,6 +18,12 @@ def arxive_searcher(keywords_list):
     df = pd.DataFrame(columns = ["title","summary", "doi", "published"] )
   return df
 
+def make_clickable(title):
+    return '<a href="https://www.google.it/search?q={}" rel="noopener noreferrer" target="_blank">{}</a>'.format("+".join(title.split()),title)
+
+df['title'] = df["title"].apply(lambda title: make_clickable(title))
+df.style
+
 def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   answers = []
