@@ -32,7 +32,7 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
   return answer
 
 keywords = st_tags("Enter Keyword:", "Press enter to add more")
-keywords = list(keywords.values())
+keywords = [n.strip() for n in keywords]
 st.write("Selected Keywords:")
 st.write(keywords)
 df = enhanced_arxive_searcher(keywords)
