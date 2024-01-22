@@ -104,4 +104,4 @@ if st.button("Search on Arxiv") and st.session_state.keyword_list:
     df = enhanced_arxive_searcher(st.session_state.keyword_list)
     st.write("### Results:")
     st.dataframe(df)
-    st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally, they are sorted starting with the most recent.")
+    st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
