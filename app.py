@@ -5,10 +5,16 @@ import numpy as np
 from itertools import combinations
 import streamlit as st
 
+problems = ["You are using just one keyword", "Non compatible keywords in the same list"]
+solutions = ["Enlarge your keywords list!", "Delete unnecessary keywords"]
+possible_issues = pd.DataFrame()
+possible_issues["problem"] = problems
+possible_issues["proposed solution"] = solutions
+
 def arxive_searcher(keywords_list):
   """Return a df retrieving results from arxive.org, according to ALL the words in the keywards list. First 20 results"""
 
-  elaborated_keywords = "+AND+".join(["all:"+ k.replace(" ","%20") for k in keywords_list])
+  elaborated_keywords = "+AND+".join(["all:"+ str(k).replace(" ","%20") for k in keywords_list])
   url = "http://export.arxiv.org/api/query?search_query=" + elaborated_keywords + "&max_results=20"
   data = urllib.request.urlopen(url)
   try:
@@ -29,30 +35,6 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
   answer = answer.sort_values(by = "published", ascending = False).reset_index(drop = True)
 
   return answer
-
-# st.title("Arxive search engine")
-# st.write("Search engine for Arxiv. Changes results and search order from traditional search. Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords.") 
-         
-# # Create a session state to store the keyword list
-# if 'keyword_list' not in st.session_state:
-#     st.session_state.keyword_list = []
-
-# new_keyword = st.text_input("Add your keywords (comma separated list):")
-
-# if st.button("Add Keywords") and new_keyword:
-#     st.session_state.keyword_list = [k.strip() for k in new_keyword.split(",")]
-
-# if st.button("Delete keywords") and st.session_state.keyword_list:
-#     st.session_state.keyword_list = []
-
-# st.write("Current Keywords:")
-# for keyword in st.session_state.keyword_list:
-#     st.write(f"- {keyword}")
-
-# if st.button("Search on Arxive") and st.session_state.keyword_list:
-#   df = enhanced_arxive_searcher(st.session_state.keyword_list)
-#   st.write(df)
-#   st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
 
 # Set page title and description
 st.set_page_config(
@@ -97,3 +79,5 @@ if st.button("Search on Arxiv") and st.session_state.keyword_list:
     st.write("### Results:")
     st.dataframe(df)
     st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
+    st.subheader("Current Keywords:")
+    st.dataframe(possible_issues)
