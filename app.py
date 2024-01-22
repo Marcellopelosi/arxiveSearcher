@@ -30,26 +30,78 @@ def enhanced_arxive_searcher(keywords, percentage = 0.7):
 
   return answer
 
-st.title("Arxive search engine")
-st.write("Search engine for Arxiv. Changes results and search order from traditional search. Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords.") 
+# st.title("Arxive search engine")
+# st.write("Search engine for Arxiv. Changes results and search order from traditional search. Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords.") 
          
+# # Create a session state to store the keyword list
+# if 'keyword_list' not in st.session_state:
+#     st.session_state.keyword_list = []
+
+# new_keyword = st.text_input("Add your keywords (comma separated list):")
+
+# if st.button("Add Keywords") and new_keyword:
+#     st.session_state.keyword_list = [k.strip() for k in new_keyword.split(",")]
+
+# if st.button("Delete keywords") and st.session_state.keyword_list:
+#     st.session_state.keyword_list = []
+
+# st.write("Current Keywords:")
+# for keyword in st.session_state.keyword_list:
+#     st.write(f"- {keyword}")
+
+# if st.button("Search on Arxive") and st.session_state.keyword_list:
+#   df = enhanced_arxive_searcher(st.session_state.keyword_list)
+#   st.write(df)
+#   st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
+
+import streamlit as st
+
+# Function to perform Arxiv search
+def enhanced_arxive_searcher(keywords):
+    # Add your Arxiv search logic here
+    # This function should return the DataFrame with search results
+    pass
+
+# Set page title and description
+st.set_page_config(
+    page_title="Arxiv Search Engine",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# Sidebar
+st.sidebar.title("Arxiv Search Engine")
+st.sidebar.write(
+    "Search engine for Arxiv. Changes results and search order from traditional search. "
+    "Starting from a list of keywords provided as input. Ideal for searches with a large number of keywords."
+)
+
 # Create a session state to store the keyword list
 if 'keyword_list' not in st.session_state:
     st.session_state.keyword_list = []
 
-new_keyword = st.text_input("Add your keywords (comma separated list):")
+# Input for adding new keywords
+new_keyword = st.sidebar.text_input("Add your keywords (comma-separated list):")
 
-if st.button("Add Keywords") and new_keyword:
+# Add Keywords button
+if st.sidebar.button("Add Keywords") and new_keyword:
     st.session_state.keyword_list = [k.strip() for k in new_keyword.split(",")]
 
-if st.button("Delete keywords") and st.session_state.keyword_list:
+# Delete Keywords button
+if st.sidebar.button("Delete Keywords") and st.session_state.keyword_list:
     st.session_state.keyword_list = []
 
-st.write("Current Keywords:")
+# Display current keywords in the sidebar
+st.sidebar.subheader("Current Keywords:")
 for keyword in st.session_state.keyword_list:
-    st.write(f"- {keyword}")
+    st.sidebar.write(f"- {keyword}")
 
-if st.button("Search on Arxive") and st.session_state.keyword_list:
-  df = enhanced_arxive_searcher(st.session_state.keyword_list)
-  st.write(df)
-  st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally they are sorted starting with the most recent.")
+# Main content area
+st.title("Search Results")
+
+# Search on Arxiv button
+if st.button("Search on Arxiv") and st.session_state.keyword_list:
+    df = enhanced_arxive_searcher(st.session_state.keyword_list)
+    st.write("### Results:")
+    st.dataframe(df)
+    st.write("How it works: from the set of keywords provided as input, subsets of size 70% of the main set are processed. The results are put together, duplicates are removed, and finally, they are sorted starting with the most recent.")
