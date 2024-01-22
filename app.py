@@ -5,7 +5,7 @@ import numpy as np
 from itertools import combinations
 import streamlit as st
 
-problems = ["Empty dataframe", "Empty dataframe", "Empty dataframe"]
+problems = ["Empty dataframe", "Empty dataframe"]
 reasons = ["You are using just one keyword", "Non compatible keywords in the same list"]
 solutions = ["Enlarge your keywords list!", "Delete unnecessary keywords"]
 possible_issues = pd.DataFrame()
